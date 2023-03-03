@@ -17,6 +17,11 @@ set linebreak
 
 let mapleader = '.'
 
+set foldmethod=indent
+set foldlevel=99
+" set foldclose=all
+
+" Plugins will be downloaded under the specified directory.
 call plug#begin()
 
 " Declare the list of plugins.
@@ -59,6 +64,10 @@ set ttymouse=sgr
 let g:multi_cursor_start_word_key = "<C-o>"
 let g:multi_cursor_next_key       = "<C-o>"
 let g:multi_cursor_quit_key       = '<Esc>'
+
+" Cursor layout options 
+let &t_SI = "\e[5 q" " thin cursor on insert mode
+let &t_EI = "\e[1 q" " block on normal mode
 
 " Mappings
 nnoremap <C-n> :NERDTreeToggle<CR>
