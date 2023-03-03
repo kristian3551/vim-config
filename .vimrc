@@ -17,7 +17,6 @@ set linebreak
 
 let mapleader = '.'
 
-" Plugins will be downloaded under the specified directory.
 call plug#begin()
 
 " Declare the list of plugins.
