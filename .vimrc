@@ -1,8 +1,8 @@
 syntax on
+set spell spelllang=en_us
 
 set expandtab
 set tabstop=4
-
 set number
 
 set encoding=utf-8
@@ -69,11 +69,24 @@ let g:multi_cursor_quit_key       = '<Esc>'
 let &t_SI = "\e[5 q" " thin cursor on insert mode
 let &t_EI = "\e[1 q" " block on normal mode
 
+nnoremap <C-l> gt<CR>
+nnoremap <C-h> gT<CR>
+nnoremap <C-t> :tabnew<CR>
+
+
 " Mappings
 nnoremap <C-n> :NERDTreeToggle<CR>
 nnoremap <C-f> :NERDTreeFocus<CR>
 nnoremap <leader>c :Commentary<CR>
-nnoremap <C-t> :TagbarToggle<CR>
-nnoremap <leader>n :bnext<CR>
+nnoremap <leader>t :TagbarToggle<CR>
 nnoremap <C-j> :m+<CR>
 nnoremap <C-k> :m -2<CR>
+nnoremap <leader>` :term<CR>
+
+" put a matching quote/bracket when in insert mode
+inoremap { {}<Esc>ha
+inoremap ( ()<Esc>ha
+inoremap [ []<Esc>ha
+inoremap " ""<Esc>ha
+inoremap ' ''<Esc>ha
+inoremap ` ``<Esc>ha
