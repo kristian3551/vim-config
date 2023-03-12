@@ -1,16 +1,19 @@
-syntax on
+source $VIMRUNTIME/defaults.vim
+
 set spell spelllang=en_us
+filetype plugin indent on
+syntax on
 
 set expandtab
-set tabstop=4
-set number
-
+set tabstop=2
 set encoding=utf-8
+set relativenumber
 
 set scroll=8
 set scrolloff=8
 
 set hlsearch
+set splitbelow
 
 set wrap
 set linebreak
@@ -19,7 +22,11 @@ let mapleader = '.'
 
 set foldmethod=indent
 set foldlevel=99
-" set foldclose=all
+
+set clipboard=unnamed,unnamedplus
+
+set wildmenu
+set wildmode=list:longest,full
 
 " Plugins will be downloaded under the specified directory.
 call plug#begin()
@@ -61,32 +68,37 @@ set mouse=a
 set ttymouse=sgr
 
 " Multiline cursor options.
-let g:multi_cursor_start_word_key = "<C-o>"
-let g:multi_cursor_next_key       = "<C-o>"
+execute "set <M-m>=\em"
+let g:multi_cursor_start_word_key = "<M-m>"
+execute "set <M-m>=\em"
+let g:multi_cursor_next_key       = "<M-m>"
 let g:multi_cursor_quit_key       = '<Esc>'
 
 " Cursor layout options 
 let &t_SI = "\e[5 q" " thin cursor on insert mode
 let &t_EI = "\e[1 q" " block on normal mode
 
-nnoremap <C-l> gt<CR>
-nnoremap <C-h> gT<CR>
-nnoremap <C-t> :tabnew<CR>
-
-
 " Mappings
 nnoremap <C-n> :NERDTreeToggle<CR>
 nnoremap <C-f> :NERDTreeFocus<CR>
-nnoremap <leader>c :Commentary<CR>
 nnoremap <leader>t :TagbarToggle<CR>
-nnoremap <C-j> :m+<CR>
-nnoremap <C-k> :m -2<CR>
+
+nnoremap <leader>c :Commentary<CR>
+
+nnoremap <C-l> gt<CR>
+nnoremap <C-h> gT<CR>
+nnoremap <C-t> :tabnew<CR>
+nnoremap <C-b> :bnext<CR>
+
+execute "set <M-j>=\ej"
+nnoremap <M-j> :m+<CR>
+execute "set <M-k>=\ek"
+nnoremap <M-k> :m -2<CR>
+
 nnoremap <leader>` :term<CR>
 
-" put a matching quote/bracket when in insert mode
-inoremap { {}<Esc>ha
-inoremap ( ()<Esc>ha
-inoremap [ []<Esc>ha
-inoremap " ""<Esc>ha
-inoremap ' ''<Esc>ha
-inoremap ` ``<Esc>ha
+nnoremap j gj
+nnoremap k gk
+
+nnoremap K 5gk<CR>
+nnoremap J 5gj<CR>
