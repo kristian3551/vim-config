@@ -4,6 +4,8 @@ set spell spelllang=en_us
 filetype plugin indent on
 syntax on
 
+set noswapfile
+
 set expandtab
 set tabstop=2
 set encoding=utf-8
@@ -43,8 +45,22 @@ Plug 'terryma/vim-multiple-cursors'
 Plug 'xuyuanp/nerdtree-git-plugin'
 Plug 'preservim/tagbar'
 Plug 'romainl/vim-cool'
+Plug 'neoclide/coc.nvim', { 'branch': 'master', 'do': 'yarn install --frozen-lockfile' }
 
 call plug#end()
+
+nnoremap <silent> D :call ShowDocumentation()<CR>
+
+function! ShowDocumentation()
+  if CocAction('hasProvider', 'hover')
+    call CocActionAsync('doHover')
+  else
+    call feedkeys('K', 'in')
+  endif
+endfunction
+
+set statusline^=%{coc#status()}
+autocmd User CocStatusChange redrawstatus
 
 let g:cool_total_matches = 1
 
@@ -68,6 +84,7 @@ set mouse=a
 set ttymouse=sgr
 
 " Multiline cursor options.
+
 execute "set <M-m>=\em"
 let g:multi_cursor_start_word_key = "<M-m>"
 execute "set <M-m>=\em"
@@ -81,6 +98,7 @@ let &t_EI = "\e[1 q" " block on normal mode
 " Mappings
 nnoremap <C-n> :NERDTreeToggle<CR>
 nnoremap <C-f> :NERDTreeFocus<CR>
+
 nnoremap <leader>t :TagbarToggle<CR>
 
 nnoremap <leader>c :Commentary<CR>
@@ -89,6 +107,7 @@ nnoremap <C-l> gt<CR>
 nnoremap <C-h> gT<CR>
 nnoremap <C-t> :tabnew<CR>
 nnoremap <C-b> :bnext<CR>
+nnoremap <S-f> za<CR>
 
 execute "set <M-j>=\ej"
 nnoremap <M-j> :m+<CR>
@@ -99,6 +118,9 @@ nnoremap <leader>` :term<CR>
 
 nnoremap j gj
 nnoremap k gk
-
-nnoremap K 5gk<CR>
 nnoremap J 5gj<CR>
+nnoremap K 5gk<CR>
+
+nnoremap <S-s> :w<CR>
+nnoremap <C-w> :wq<CR>
+nnoremap <S-q> :q!<CR>
