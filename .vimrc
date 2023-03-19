@@ -85,6 +85,7 @@ let g:everforest_enable_italic          = 1
 let g:everforest_background             = 'hard'
 let g:everforest_better_performance     = 1
 let g:airline_theme                     = 'everforest'
+
 colorscheme everforest
 
 " Enter visual mode when clicking with the mouse.
@@ -128,9 +129,8 @@ nnoremap k gk
 nnoremap J 5gj<CR>
 nnoremap K 5gk<CR>
 
-nnoremap <S-s> :w<CR>
-nnoremap <S-q> :q!<CR>
-inoremap S <Esc>:w<CR>a
+nnoremap S :w<CR>
+nnoremap Q :q!<cr>
 
 inoremap <C-h> <Left>
 inoremap <C-l> <Right>
