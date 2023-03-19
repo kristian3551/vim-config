@@ -8,6 +8,7 @@ set noswapfile
 
 set expandtab
 set tabstop=2
+
 set encoding=utf-8
 set relativenumber
 
@@ -30,7 +31,6 @@ set clipboard=unnamed,unnamedplus
 set wildmenu
 set wildmode=list:longest,full
 
-" Plugins will be downloaded under the specified directory.
 call plug#begin()
 
 " Declare the list of plugins.
@@ -48,6 +48,15 @@ Plug 'romainl/vim-cool'
 Plug 'neoclide/coc.nvim', { 'branch': 'master', 'do': 'yarn install --frozen-lockfile' }
 
 call plug#end()
+
+" CoC options
+nmap <silent> gd <Plug>(coc-definition)
+nmap <silent> gy <Plug>(coc-type-definition)
+nmap <silent> gi <Plug>(coc-implementation)
+nmap <silent> gr <Plug>(coc-references)
+
+xmap <leader>f  <Plug>(coc-format-selected)
+nmap <leader>f  <Plug>(coc-format-selected)
 
 nnoremap <silent> D :call ShowDocumentation()<CR>
 
@@ -73,10 +82,9 @@ set background=light
 
 let g:everforest_transparent_background = 1
 let g:everforest_enable_italic          = 1
-let g:everforest_background             = 'soft'
+let g:everforest_background             = 'hard'
 let g:everforest_better_performance     = 1
 let g:airline_theme                     = 'everforest'
-
 colorscheme everforest
 
 " Enter visual mode when clicking with the mouse.
@@ -84,7 +92,6 @@ set mouse=a
 set ttymouse=sgr
 
 " Multiline cursor options.
-
 execute "set <M-m>=\em"
 let g:multi_cursor_start_word_key = "<M-m>"
 execute "set <M-m>=\em"
@@ -122,5 +129,22 @@ nnoremap J 5gj<CR>
 nnoremap K 5gk<CR>
 
 nnoremap <S-s> :w<CR>
-nnoremap <C-w> :wq<CR>
 nnoremap <S-q> :q!<CR>
+inoremap S <Esc>:w<CR>a
+
+inoremap <C-h> <Left>
+inoremap <C-l> <Right>
+inoremap <C-j> <Down>
+inoremap <C-k> <Up>
+
+set langmap=
+      \АA,БB,ЦC,ДD,ЕE,ФF,ГG,ХH,ИI,ЙJ,КK,ЛL,МM,НN,ОO,ПP,ЯQ,РR,СS,ТT,УU,ЖV,ВW,ѝX,ЪY,ЗZ,
+      \аa,бb,цc,дd,еe,фf,гg,хh,иi,йj,кk,лl,мm,нn,оo,пp,яq,рr,сs,тt,уu,жv,вw,ьx,ъy,зz,
+      \Ч~,Ш{,Щ},
+      \ч`,ш[,щ],
+
+map Й J
+map К K
+
+map Я Q<cr>
+map С S<cr>
